@@ -13,6 +13,8 @@ import numpy as np
 from scipy.optimize import curve_fit
 from sklearn.metrics import r2_score
 import copy
+import outliers as o
+import regression as r
 
 sys.path.append("/Users/egill/Desktop/CHILDdb/python/")
 
@@ -21,23 +23,23 @@ age = input("\n\nEnter the age for which you would like to predict an acceptable
 
 data = pd.read_csv(filename)
 
-data = add_age(data)
+data = o.add_age(data)
 
-min_a = min_age(data)
+min_a = o.min_age(data)
 
-data_split = split_by_age(data)
+data_split = o.split_by_age(data)
 
-data_stats = calc_stats(data_split, data)
+data_stats = o.calc_stats(data_split, data)
 
-difference = test_for_difference(data_split)
+difference = o.test_for_difference(data_split)
 
-stats_merged = merge_stats(data_split, data_stats)
+stats_merged = o.merge_stats(data_split, data_stats)
 
-data_outliers = mark_outliers(stats_merged)
+data_outliers = o.mark_outliers(stats_merged)
 
-data_z_scores = mod_z_score(data_outliers)
+data_z_scores = o.mod_z_score(data_outliers)
 
-data_output = df_append(data_z_scores)
+data_output = o.df_append(data_z_scores)
 
 # if Kruskal-Wallace test determines medians are not stat different
 if difference > 0.05:
@@ -46,7 +48,8 @@ if difference > 0.05:
 
 else:
     print("\n\nData medians are statistically different. Starting linear regression.\n\n")
-    no_outliers = remove_z_outliers(data_output)
+
+no_outliers = o.remove_z_outliers(data_output)
 
 # make df for regression that does not contain age 0 -  causes problems for log regression
 # data_stats_regression = data_stats[data_stats['age_rounded'] != 0]
@@ -55,21 +58,21 @@ data_stats_regression = copy.deepcopy(data_stats)
 
 data_stats_regression['age_rounded'] = data_stats_regression['age_rounded'].replace(0, 0.1)
 
-linear_R2, linear_coeff = do_regression(func_linear)
+linear_R2, linear_coeff = r.do_regression(data_stats_regression, r.func_linear)
 
-log10_R2, log10_coeff = do_regression(func_log)
+log10_R2, log10_coeff = r.do_regression(data_stats_regression, r.func_log)
 
-ln_R2, ln_coeff = do_regression(func_ln)
+ln_R2, ln_coeff = r.do_regression(data_stats_regression, r.func_ln)
 
-best_line = find_best_line(linear_R2, log10_R2, ln_R2)
+best_line = r.find_best_line(linear_R2, log10_R2, ln_R2)
 
 print("\n\nThe predicted median value at age ", str(age), " is ", str(return_prediction()), "\n\n")
 
-zero_z_score = z_score_ranges()
+zero_z_score = r.z_score_ranges()
 
-min_acceptable_range = return_prediction() - zero_z_score
+min_acceptable_range = r.return_prediction() - zero_z_score
 
-max_acceptable_range = return_prediction() + zero_z_score
+max_acceptable_range = r.return_prediction() + zero_z_score
 
 print("\n\nThe predicted acceptable range at age ", str(age), " is from ", str(min_acceptable_range), " to ", str(max_acceptable_range), "\n\n")
 

@@ -19,7 +19,7 @@ from sklearn.metrics import r2_score
 def func_linear(t, a, c):
     return(a * t + c)
 
-# ln function (y = (ln(x)) + b)_
+# ln function (y = (ln(x)) + b)
 def func_log(t, a, c):
     return (a * np.log10(t) + c)
 
@@ -28,10 +28,10 @@ def func_ln(t, a, c):
     return (a * np.log(t) + c)
 
 # perform linear regression using given function
-def do_regression(func):
-    x = data_stats_regression['age_rounded'].tolist()
+def do_regression(df, func):
+    x = df['age_rounded'].tolist()
     x = np.array(x)
-    y = data_stats_regression['median'].tolist()
+    y = df['median'].tolist()
     y = np.array(y)
     popt, pcov = (curve_fit(func, x, y))
     y_hat = func(x, *popt)
