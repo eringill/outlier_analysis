@@ -66,29 +66,38 @@ ln_R2, ln_coeff = r.do_regression(data_stats_regression, r.func_ln)
 
 best_line = r.find_best_line(linear_R2, log10_R2, ln_R2)
 
-print("\n\nThe predicted median value at age ", str(age), " is ", str(return_prediction()), "\n\n")
+print("\n\nThe predicted median value at age ", str(age), " is ", str(r.return_prediction(best_line, age, linear_coeff,
+                                                                                          log10_coeff, ln_coeff)),
+      "\n\n")
 
-zero_z_score = r.z_score_ranges()
+zero_z_score = r.z_score_ranges(no_outliers)
 
-min_acceptable_range = r.return_prediction() - zero_z_score
+min_acceptable_range = r.return_prediction(best_line, age, linear_coeff, log10_coeff, ln_coeff) - zero_z_score
 
-max_acceptable_range = r.return_prediction() + zero_z_score
+max_acceptable_range = r.return_prediction(best_line, age, linear_coeff, log10_coeff, ln_coeff) + zero_z_score
 
-print("\n\nThe predicted acceptable range at age ", str(age), " is from ", str(min_acceptable_range), " to ", str(max_acceptable_range), "\n\n")
+print("\n\nThe predicted acceptable range at age ", str(age), " is from ", str(min_acceptable_range), " to ",
+      str(max_acceptable_range), "\n\n")
 
 outlierfile = filename.replace('.csv', '_outliers.csv')
 
-data_output.to_csv(outlierfile, index = False)
+# data_output.to_csv(outlierfile, index = False)
 
-#plot boxplot
+# plot boxplot
 fig, ax = plt.subplots()
-flierprops = dict(marker='D', markerfacecolor='red', markersize=6, alpha = 0.2, linestyle = 'none')
-sns.boxplot(data = data_output, x = 'age_rounded', y = 'value', flierprops = flierprops, ax = ax)
-ax.set_ylim(-10,175)
+flierprops = dict(marker='D', markerfacecolor='red', markersize=6, alpha=0.2, linestyle='none')
+sns.boxplot(data=data_output, x='age_rounded', y='value', flierprops=flierprops, ax=ax)
+ax.set_ylim(-10, 175)
 plotname = filename.replace('.csv', '_outliers.png')
-plt.savefig(plotname, format="png")
+# plt.savefig(plotname, format="png")
 plt.show()
 
+
 # plot regression
+x = data_stats_regression['age_rounded']
+y = data_stats_regression['median']
 plt.plot(x, y, 'o')
-plt.plot(x, func(x, *popt))
+plt.plot(x, r.func_linear(x, *linear_coeff))
+plt.plot(x, r.func_log(x, *log10_coeff))
+plt.plot(x, r.func_ln(x, *ln_coeff))
+plt.show()

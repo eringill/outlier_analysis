@@ -45,41 +45,41 @@ def do_regression(df, func):
 
 # determine which regression method gives best line by examining R2 values
 def find_best_line(r2_1, r2_2, r2_3):
-    bestr2 = ''
-    r2 = 0
+    bestr2 = ""
+    r2 = ""
     if r2_1 > r2_2:
         if r2_1 > r2_3:
             bestr2 = "The best line is fit to non-transformed data, R2= " + str(r2_1)
-            r2 = linear_R2
+            r2 = "linear"
     if r2_2 > r2_1:
         if r2_2 > r2_3:
             bestr2 = "The best line is fit to log10 data, R2= " + str(r2_2)
-            r2 = log10_R2
+            r2 = "log10"
     if r2_3 > r2_1:
         if r2_3 > r2_2:
             bestr2 = "The best line is fit to ln data, R2= " + str(r2_3)
-            r2 = ln_R2
-    print(bestr2)
+            r2 = "ln"
+    #print(bestr2)
     return (r2)
 
 # predict median value for user input age
-def return_prediction():
-    if best_line == linear_R2:
+def return_prediction(best_line, age, linear_coeff, log10_coeff, ln_coeff):
+    if best_line == "linear":
         return (func_linear(int(age), *linear_coeff))
-    if best_line == log10_R2:
+    if best_line == "log10":
         return (func_log(int(age), *log10_coeff))
-    if best_line == ln_R2:
+    if best_line == "ln":
         return (func_ln(int(age), *ln_coeff))
 
 # return range for acceptable values by examining range of previous
 # acceptable values, dividing it in 2, then adding and subtracting that
 # number from the predicted median
-def z_score_ranges():
+def z_score_ranges(df):
     ranges = []
     colnames = ['age_rounded', 'min', 'max', 'diff']
     table = pd.DataFrame()
-    for i in np.unique(no_outliers['age_rounded']):
-        age_df = no_outliers[no_outliers['age_rounded'] == i]
+    for i in np.unique(df['age_rounded']):
+        age_df = df[df['age_rounded'] == i]
         minimum = min(age_df['value'])
         maximum = max(age_df['value'])
         diff = maximum - minimum

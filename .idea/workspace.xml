@@ -51,6 +51,9 @@
       <module name="CHILDdb_outliers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop/CHILDdb/python" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -130,7 +133,8 @@
       <workItem from="1588644628014" duration="4954000" />
       <workItem from="1588890930265" duration="265000" />
       <workItem from="1588891205828" duration="3033000" />
-      <workItem from="1588974517776" duration="14454000" />
+      <workItem from="1588974517776" duration="14524000" />
+      <workItem from="1589239692432" duration="1440000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
@@ -150,7 +154,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -177,10 +183,11 @@
     <state x="0" y="293" key="SettingsEditor/0.23.1870.1057@0.23.1870.1057" timestamp="1588973774506" />
     <state x="0" y="293" key="SettingsEditor/0.23.1872.1057@0.23.1872.1057" timestamp="1588891192596" />
     <state x="0" y="293" key="SettingsEditor/0.23.1874.1057@0.23.1874.1057" timestamp="1589237006399" />
-    <state x="355" y="431" key="com.intellij.ide.util.TipDialog" timestamp="1588974518727">
-      <screen x="0" y="23" width="1872" height="1057" />
+    <state x="355" y="431" key="com.intellij.ide.util.TipDialog" timestamp="1589239693001">
+      <screen x="0" y="23" width="1873" height="1057" />
     </state>
     <state x="355" y="431" key="com.intellij.ide.util.TipDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1588974518727" />
+    <state x="355" y="431" key="com.intellij.ide.util.TipDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1589239693001" />
     <state x="799" y="266" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1589234772600">
       <screen x="0" y="23" width="1874" height="1057" />
     </state>
