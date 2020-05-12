@@ -2,33 +2,28 @@
 # -*- coding: utf-8 -*-
 # author: egill
 
-# imports
-import sys
-import pandas as pd
-import matplotlib.pyplot as plt
 import statistics as stat
-import seaborn as sns
+
+# imports
+import pandas as pd
 import scipy.stats as sstats
-import numpy as np
-from scipy.optimize import curve_fit
-from sklearn.metrics import r2_score
-import copy
+
 
 # functions
 def add_age(data_f):
     data_f['age'] = data_f['age_in_days'] / 365
     data_f['age_rounded'] = round(data_f['age'])
-    return (data_f)
+    return data_f
 
 
 def min_age(data_f):
-    return (min(data_f['age_rounded']))
+    return min(data_f['age_rounded'])
 
 
 # split all data frames by age to calculate age-specific IQRs
 def split_by_age(data_f):
     data_split = [i for _, i in data_f.groupby('age_rounded')]
-    return (data_split)
+    return data_split
 
 
 # Find median, IQR, range of non-outlier datapoints for each age
@@ -38,7 +33,7 @@ def calc_stats(df_list, data_f):
     table = pd.DataFrame()
     age = min_age(data_f)
     for i in df_list:
-        if len(i) > 5: #must modify function so that stats are only generated with min of 5 samples
+        if len(i) > 5:  # must modify function so that stats are only generated with min of 5 samples
             stats.append(age)
             stats.append(stat.median(i['value']))
             IQR = (i['value'].describe()[6] - i['value'].describe()[4])
@@ -49,7 +44,8 @@ def calc_stats(df_list, data_f):
         age += 1
         stats = []
     table.columns = colnames
-    return (table)
+    return table
+
 
 # merge stats with dataframes for transperancy when conducting outlier analysis
 def merge_stats(df_list, stats):
@@ -57,7 +53,7 @@ def merge_stats(df_list, stats):
     for i in df_list:
         i = i.merge(stats)
         df_list_merged.append(i)
-    return (df_list_merged)
+    return df_list_merged
 
 
 # determine if each row is an outlier based on IQR method
@@ -69,6 +65,7 @@ def is_outlier(row):
     else:
         return False
 
+
 # mark IQR outliers in data frame
 def mark_outliers(df_list):
     for i in df_list:
@@ -76,7 +73,8 @@ def mark_outliers(df_list):
             pass
         else:
             i['outlier'] = i.apply(lambda row: is_outlier(row), axis=1)
-    return (df_list)
+    return df_list
+
 
 # calculate modified z-score for each data point
 def mod_z_score(df_list):
@@ -87,15 +85,15 @@ def mod_z_score(df_list):
             median = stat.median(i['value'])
             MAD = sstats.median_absolute_deviation(i['value'])
             i['mod_z_score'] = (0.6745 * (i['value'] - median) / MAD)
-    return (df_list)
+    return df_list
 
 
 # merge all dataframes back together
 def df_append(df_list):
     big_df = pd.DataFrame()
     for i in df_list:
-        big_df = big_df.append(i, ignore_index=True, sort = True)
-    return (big_df)
+        big_df = big_df.append(i, ignore_index=True, sort=True)
+    return big_df
 
 
 # test to see if medians of data for ages are statistically different from
@@ -119,4 +117,4 @@ def test_for_difference(df_list):
 # find best fit line.
 def remove_z_outliers(data_f):
     data_f['z_outlier'] = abs(data_f['mod_z_score']) > 3.5
-    return(data_f[data_f['z_outlier'] == False])
+    return data_f[data_f['z_outlier'] == False]

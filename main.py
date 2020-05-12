@@ -2,17 +2,12 @@
 # -*- coding: utf-8 -*-
 # author: egill
 
+import copy
 # imports
 import sys
-import pandas as pd
 import matplotlib.pyplot as plt
-import statistics as stat
+import pandas as pd
 import seaborn as sns
-import scipy.stats as sstats
-import numpy as np
-from scipy.optimize import curve_fit
-from sklearn.metrics import r2_score
-import copy
 import outliers as o
 import regression as r
 
