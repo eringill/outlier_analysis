@@ -1,0 +1,63 @@
+@startuml
+start
+:user is asked to enter
+path to csv file containing 
+columns labelled "age_in_days" 
+and "value";
+:user is asked to enter 
+age for which they would like
+an acceptable range of values
+predicted;
+:age in years is calculated
+for each sample;
+:data for each age is split
+into separate data frames to
+calculate statistics and 
+outliers;
+:median, IQR, IQR outliers, 
+modified Z-score and modified
+Z-score outliers calculated;
+:Kruskal-Wallace test performed
+to determine whether medians for
+each age are different;
+if (p-value > 0.05) then (yes)
+	:perform linear regression\nto make prediction;
+else (no)
+	:prediction can be made\nbased on last data point;
+	:or regression can be performed;
+endif
+:linear regression performed
+using 3 formulae 
+y = mx + b , 
+y = m * ln(x) + b , 
+y = m * log10(x) + b;
+:best fit line is determined using 
+R2 score;
+:predict median of data at user-input
+age based on optimized regression
+formula using medians from existing
+ages;
+:range of acceptable data points 
+is **largest** range for any age, based
+on Z-score outlier determination
+(median is in middle of range);
+:outputs;
+split
+ :csv file containing median
+ modified Z-score, IQR outlier?|
+split again
+ :jpg file containing bar graph
+ with IQR outliers shown in red|
+split again
+ :jpg file containing median
+ points for each age and regressed
+ lines|
+split again
+ :console printout of predicted median 
+ for user-input age|
+split again
+ :console printout of predicted 
+ acceptable range for user-input age|
+end split
+:finish;
+@enduml
