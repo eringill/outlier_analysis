@@ -37,9 +37,9 @@ data_z_scores = o.mod_z_score(data_outliers)
 data_output = o.df_append(data_z_scores)
 
 # if Kruskal-Wallace test determines medians are not stat different
+# linear regression will still help here
 if difference > 0.05:
-    print(
-        "Data medians are not statistically different. Next time point can be predicted based on the last one obtained.")
+    print("\n\nData medians are not statistically different. Next time point can be predicted based on the last one obtained.\n\n")
 
 else:
     print("\n\nData medians are statistically different. Starting linear regression.\n\n")

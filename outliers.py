@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 # author: egill
 
-import statistics as stat
-
 # imports
 import pandas as pd
 import scipy.stats as sstats
-
+import statistics as stat
 
 # functions
 def add_age(data_f):
@@ -109,9 +107,7 @@ def test_for_difference(df_list):
         meds = meds + "list(df_list[" + str(i) + "]['value']), "
     meds = meds[:-2]
     meds = meds + ')'
-    return (eval(meds)[1])
-    # kw = sstats.kruskal(list(data_split[0]['value']), list(data_split[1]['value']), list(data_split[2]['value']), list(data_split[3]['value']), list(data_split[4]['value']), list(data_split[5]['value']), list(data_split[6]['value']), list(data_split[7]['value']))
-    # print(kw)
+    return eval(meds)[1]
 
 
 # find best fit line.
