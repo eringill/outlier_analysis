@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # author: egill
 
-import copy
 # imports
+import copy
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
