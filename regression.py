@@ -1,16 +1,14 @@
-# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # author: egill
 
-import numpy as np
 # imports
+import numpy as np
 import pandas as pd
 from scipy.optimize import curve_fit
 from sklearn.metrics import r2_score
 
 
 # functions
-
 # linear function (y = mx + b)
 def func_linear(t, a, c):
     return a * t + c

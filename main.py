@@ -1,4 +1,3 @@
-# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # author: egill
 
@@ -10,13 +9,44 @@ import pandas as pd
 import seaborn as sns
 import outliers as o
 import regression as r
+from plotnine import *
 
 sys.path.append("/Users/egill/Desktop/CHILDdb/python/")
 
-filename = input("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\n\n")
-age = input("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
+# functions
+def get_filename():
+    print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\n\n")
+    filename = input()
+    if filename == "" or filename == "\n" or filename is None:
+        filename = "/Users/egill/Desktop/CHILDdb/CHILD_all_weights.csv"
+    return filename
+
+
+def get_age():
+    print("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
+    age = input()
+    if age == "" or age == "\n" or age is None or type(age) != int:
+        age = 4
+    return age
+
+
+def plot_overlay(df):
+    ggplot(df, aes(x = 'age_rounded', y = 'value', group = 'age_rounded'))
+    + geom_jitter(aes(color = 'z_outlier', alpha = 0.1))
+    + geom_boxplot()
+    + ylim(-10, 175)
+    + guides(alpha = FALSE)
+    + ggtitle("Boxplot of outliers by age determined using\nthe IQR method")
+    + xlab("age in years")
+
+
+
+
+filename = get_filename()
 
 data = pd.read_csv(filename)
+
+age = get_age()
 
 data = o.add_age(data)
 
@@ -39,7 +69,8 @@ data_output = o.df_append(data_z_scores)
 # if Kruskal-Wallace test determines medians are not stat different
 # linear regression will still help here
 if difference > 0.05:
-    print("\n\nData medians are not statistically different. Next time point can be predicted based on the last one obtained.\n\n")
+    print(
+        "\n\nData medians are not statistically different. Next time point can be predicted based on the last one obtained.\n\n")
 
 else:
     print("\n\nData medians are statistically different. Starting linear regression.\n\n")
@@ -51,8 +82,9 @@ no_outliers = o.remove_z_outliers(data_output)
 # OR
 data_stats_regression = copy.deepcopy(data_stats)
 
-data_stats_regression['age_rounded'] = data_stats_regression['age_rounded'].replace(0, 0.1)
-
+# only keep ages 1, 3 and 5 for regression
+data_stats_regression = data_stats_regression[data_stats_regression.age_rounded.isin([1, 3, 5])]
+#%%
 linear_R2, linear_coeff = r.do_regression(data_stats_regression, r.func_linear)
 
 log10_R2, log10_coeff = r.do_regression(data_stats_regression, r.func_log)
@@ -78,7 +110,7 @@ outlierfile = filename.replace('.csv', '_outliers.csv')
 
 # data_output.to_csv(outlierfile, index = False)
 
-# plot boxplot
+# plot boxplot (shows IQR outliers)
 fig, ax = plt.subplots()
 flierprops = dict(marker='D', markerfacecolor='red', markersize=6, alpha=0.2, linestyle='none')
 sns.boxplot(data=data_output, x='age_rounded', y='value', flierprops=flierprops, ax=ax)
@@ -87,6 +119,8 @@ plotname = filename.replace('.csv', '_outliers.png')
 # plt.savefig(plotname, format="png")
 plt.show()
 
+# plot overlay of IQR and mod-Z score outliers
+plot_overlay(data_output)
 
 # plot regression
 x = data_stats_regression['age_rounded']

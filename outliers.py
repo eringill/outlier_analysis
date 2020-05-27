@@ -1,4 +1,3 @@
-# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # author: egill
 
@@ -6,6 +5,7 @@
 import pandas as pd
 import scipy.stats as sstats
 import statistics as stat
+
 
 # functions
 def add_age(data_f):

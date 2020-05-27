@@ -4,6 +4,7 @@
     <list default="true" id="aabc9a4d-b864-4c87-91b9-a1f10edfc3ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outliers.py" beforeDir="false" afterPath="$PROJECT_DIR$/outliers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +45,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.main">
@@ -134,7 +137,10 @@
       <workItem from="1588890930265" duration="265000" />
       <workItem from="1588891205828" duration="3033000" />
       <workItem from="1588974517776" duration="14524000" />
-      <workItem from="1589239692432" duration="6543000" />
+      <workItem from="1589239692432" duration="12636000" />
+      <workItem from="1590086785775" duration="2806000" />
+      <workItem from="1590169412841" duration="58000" />
+      <workItem from="1590600873950" duration="3632000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
@@ -167,10 +173,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="643" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589238712126">
-      <screen x="0" y="23" width="1874" height="1057" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590014246775">
+      <screen x="0" y="23" width="1872" height="1057" />
     </state>
-    <state x="562" y="266" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1589233220743" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1590014246775" />
     <state x="563" y="266" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1588698340464" />
     <state x="643" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1874.1057@0.23.1874.1057" timestamp="1589238712126" />
     <state x="659" y="130" key="CommitChangelistDialog2" timestamp="1589234828213">
