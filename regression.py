@@ -37,7 +37,7 @@ def do_regression(df, func):
     # mean_abs_error = np.mean(np.absolute(y_hat - y))
     # mean_squ_error = np.mean(np.absolute((y_hat - y) **2))
     r_score = r2_score(y_hat, y)
-    print(popt)
+    # print(popt)
     # print(r_score)
     return r_score, popt
 
