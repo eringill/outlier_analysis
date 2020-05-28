@@ -9,7 +9,7 @@ import pandas as pd
 import seaborn as sns
 import outliers as o
 import regression as r
-from plotnine import *
+import plotnine as p9
 
 sys.path.append("/Users/egill/Desktop/CHILDdb/python/")
 
@@ -31,13 +31,13 @@ def get_age():
 
 
 def plot_overlay(df):
-    ggplot(df, aes(x = 'age_rounded', y = 'value', group = 'age_rounded'))
-    + geom_jitter(aes(color = 'z_outlier', alpha = 0.1))
+    return (ggplot(df, aes(x = 'age_rounded', y = 'value', group = 'age_rounded'))
+    + geom_jitter(color = 'z_outlier', alpha = 0.1)
     + geom_boxplot()
     + ylim(-10, 175)
-    + guides(alpha = FALSE)
+    + guides(alpha = False)
     + ggtitle("Boxplot of outliers by age determined using\nthe IQR method")
-    + xlab("age in years")
+    + xlab("age in years"))
 
 
 
@@ -65,6 +65,8 @@ data_outliers = o.mark_outliers(stats_merged)
 data_z_scores = o.mod_z_score(data_outliers)
 
 data_output = o.df_append(data_z_scores)
+
+data_output = o.z_outliers(data_output)
 
 # if Kruskal-Wallace test determines medians are not stat different
 # linear regression will still help here
@@ -120,7 +122,13 @@ plotname = filename.replace('.csv', '_outliers.png')
 plt.show()
 
 # plot overlay of IQR and mod-Z score outliers
-plot_overlay(data_output)
+#plot_overlay(data_output)
+
+(p9.ggplot(data=data, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
+    + p9.geom_jitter(mapping=p9.aes(color = 'z_outlier', outlier_alpha = 0.1))
+    + p9.geom_boxplot(outlier_size=0, outlier_stroke=0)
+    + p9.ylim(-10, 175)
+)
 
 # plot regression
 x = data_stats_regression['age_rounded']

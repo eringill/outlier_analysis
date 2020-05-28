@@ -93,6 +93,10 @@ def df_append(df_list):
         big_df = big_df.append(i, ignore_index=True, sort=True)
     return big_df
 
+# annotate z-score outliers
+def z_outliers(df):
+    df["z_outlier"] = abs(df["mod_z_score"]) > 3.5
+    return df
 
 # test to see if medians of data for ages are statistically different from
 # each other using Kruskal-Wallis test. If so, perform regression. If not,
