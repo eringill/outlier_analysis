@@ -93,6 +93,7 @@ def df_append(df_list):
         big_df = big_df.append(i, ignore_index=True, sort=True)
     return big_df
 
+
 # annotate z-score outliers
 def z_outliers(df):
     df["z_outlier"] = abs(df["mod_z_score"]) > 3.5
@@ -104,6 +105,7 @@ def z_outliers(df):
 # Kruskal-Wallis makes assumption that samples are independent. In this case
 # they are not. Am using this test as a proxy for performing more complicated
 # stats.
+
 
 def test_for_difference(df_list):
     meds = "sstats.kruskal("

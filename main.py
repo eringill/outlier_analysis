@@ -10,10 +10,12 @@ import outliers as o
 import regression as r
 import plotnine as p9
 import warnings
-#prevent plot warnings from printing
+
+# prevent plot warnings from printing
 warnings.filterwarnings('ignore')
 
 sys.path.append("/Users/egill/Desktop/CHILDdb/python/")
+
 
 # functions
 def get_filename():
@@ -30,20 +32,6 @@ def get_age():
     if age == "" or age == "\n" or age is None or type(age) != int:
         age = 4
     return age
-
-def ages_for_regression():
-    print("\n\nEnter the number of ages you would like to use to perform regression (if applicable).\n\n")
-    # creating an empty list
-    lst = []
-
-    # number of elemetns as input
-    n = int(input("Enter number of elements : "))
-
-    # iterating till the range
-    for i in range(0, n):
-        ele = int(input())
-
-        lst.append(ele)  # adding the element
 
 
 # get .csv filename from user
@@ -91,7 +79,8 @@ data_output = o.z_outliers(data_output)
 # linear regression will still help here
 if difference > 0.05:
     print(
-        "\n\nData medians are not statistically different. Next time point can be predicted based on the last one obtained.\n\n")
+        "\n\nData medians are not statistically different. Next time point can be predicted based on the last one "
+        "obtained.\n\n")
 
 else:
     print("\n\nData medians are statistically different. Starting linear regression.\n\n")
@@ -140,8 +129,6 @@ outlierfile = filename.replace('.csv', '_outliers.csv')
 # data_output.to_csv(outlierfile, index = False)
 
 # plot overlay of IQR and mod-Z score outliers
-#plot_overlay(data_output)
-
 print(p9.ggplot(data=data_output, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
     + p9.geom_jitter(mapping=p9.aes(color = 'z_outlier', outlier_alpha = 0.1))
     + p9.geom_boxplot(outlier_size=0, outlier_stroke=0)
