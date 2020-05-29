@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aabc9a4d-b864-4c87-91b9-a1f10edfc3ae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outliers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" />
-    </list>
+    <list default="true" id="aabc9a4d-b864-4c87-91b9-a1f10edfc3ae" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,7 +137,7 @@
       <workItem from="1590169412841" duration="58000" />
       <workItem from="1590600873950" duration="7037000" />
       <workItem from="1590693780448" duration="19000" />
-      <workItem from="1590693832423" duration="6058000" />
+      <workItem from="1590693832423" duration="6322000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
