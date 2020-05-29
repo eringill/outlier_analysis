@@ -8,3 +8,4 @@ scipy.optimize
 statistics
 pandas
 sklearn.metrics
+plotnine
