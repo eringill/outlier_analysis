@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="aabc9a4d-b864-4c87-91b9-a1f10edfc3ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outliers.py" beforeDir="false" afterPath="$PROJECT_DIR$/outliers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outliers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,12 +99,12 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/outliers" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/outliers/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,7 +142,7 @@
       <workItem from="1590169412841" duration="58000" />
       <workItem from="1590600873950" duration="7037000" />
       <workItem from="1590693780448" duration="19000" />
-      <workItem from="1590693832423" duration="5492000" />
+      <workItem from="1590693832423" duration="6058000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
@@ -174,9 +175,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590014246775">
-      <screen x="0" y="23" width="1872" height="1057" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590782893852">
+      <screen x="0" y="23" width="1865" height="1057" />
     </state>
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1865.1057@0.23.1865.1057" timestamp="1590782893852" />
     <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1590014246775" />
     <state x="563" y="266" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1588698340464" />
     <state x="643" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1874.1057@0.23.1874.1057" timestamp="1589238712126" />
