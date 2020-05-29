@@ -31,6 +31,21 @@ def get_age():
         age = 4
     return age
 
+def ages_for_regression():
+    print("\n\nEnter the number of ages you would like to use to perform regression (if applicable).\n\n")
+    # creating an empty list
+    lst = []
+
+    # number of elemetns as input
+    n = int(input("Enter number of elements : "))
+
+    # iterating till the range
+    for i in range(0, n):
+        ele = int(input())
+
+        lst.append(ele)  # adding the element
+
+
 # get .csv filename from user
 filename = get_filename()
 

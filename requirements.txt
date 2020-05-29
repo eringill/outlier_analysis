@@ -1,0 +1,10 @@
+numpy
+copy
+matplotlib.pyplot
+plotnine
+warnings
+scipy.stats
+scipy.optimize
+statistics
+pandas
+sklearn.metrics
