@@ -24,18 +24,10 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="$PROJECT_DIR$/.idea" />
-      </set>
-    </option>
-  </component>
   <component name="ProjectId" id="1bT8G2Baps2VrSBjl9N4TPL8T1P" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
@@ -95,6 +87,9 @@
       <module name="CHILDdb_outliers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/outliers" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -111,8 +106,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.CHILDanalysis" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
@@ -139,7 +134,9 @@
       <workItem from="1590169412841" duration="58000" />
       <workItem from="1590600873950" duration="7037000" />
       <workItem from="1590693780448" duration="19000" />
-      <workItem from="1590693832423" duration="6572000" />
+      <workItem from="1590693832423" duration="6745000" />
+      <workItem from="1590786265840" duration="194000" />
+      <workItem from="1590786521909" duration="418000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
@@ -152,30 +149,33 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590782893852">
+    <state x="459" y="151" key="#Updates" timestamp="1590786450978">
       <screen x="0" y="23" width="1865" height="1057" />
     </state>
-    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1865.1057@0.23.1865.1057" timestamp="1590782893852" />
+    <state x="459" y="151" key="#Updates/0.23.1865.1057@0.23.1865.1057" timestamp="1590786450978" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590786301347">
+      <screen x="0" y="23" width="1865" height="1057" />
+    </state>
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1865.1057@0.23.1865.1057" timestamp="1590786301347" />
     <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1590014246775" />
     <state x="563" y="266" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1588698340464" />
     <state x="643" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1874.1057@0.23.1874.1057" timestamp="1589238712126" />
@@ -193,10 +193,11 @@
     <state x="0" y="293" key="SettingsEditor/0.23.1870.1057@0.23.1870.1057" timestamp="1588973774506" />
     <state x="0" y="293" key="SettingsEditor/0.23.1872.1057@0.23.1872.1057" timestamp="1588891192596" />
     <state x="0" y="293" key="SettingsEditor/0.23.1874.1057@0.23.1874.1057" timestamp="1589237006399" />
-    <state x="353" y="431" key="com.intellij.ide.util.TipDialog" timestamp="1590693834079">
-      <screen x="0" y="23" width="1864" height="1057" />
+    <state x="353" y="431" key="com.intellij.ide.util.TipDialog" timestamp="1590786269046">
+      <screen x="0" y="23" width="1865" height="1057" />
     </state>
     <state x="353" y="431" key="com.intellij.ide.util.TipDialog/0.23.1864.1057@0.23.1864.1057" timestamp="1590693834079" />
+    <state x="353" y="431" key="com.intellij.ide.util.TipDialog/0.23.1865.1057@0.23.1865.1057" timestamp="1590786269046" />
     <state x="355" y="431" key="com.intellij.ide.util.TipDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1588974518727" />
     <state x="355" y="431" key="com.intellij.ide.util.TipDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1589239693001" />
     <state x="799" y="266" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1589234772600">
