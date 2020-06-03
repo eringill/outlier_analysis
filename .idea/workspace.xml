@@ -38,7 +38,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.core">
     <configuration name="CHILDanalysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CHILDdb_outliers" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -83,7 +83,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="core" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CHILDdb_outliers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -96,7 +96,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/outliers/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/outliers/core.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -106,8 +106,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.core" />
       <item itemvalue="Python.CHILDanalysis" />
-      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
@@ -137,6 +137,7 @@
       <workItem from="1590693832423" duration="6745000" />
       <workItem from="1590786265840" duration="194000" />
       <workItem from="1590786521909" duration="418000" />
+      <workItem from="1591141878266" duration="156000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1589234835001</created>
@@ -172,11 +173,11 @@
       <screen x="0" y="23" width="1865" height="1057" />
     </state>
     <state x="459" y="151" key="#Updates/0.23.1865.1057@0.23.1865.1057" timestamp="1590786450978" />
-    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590786301347">
-      <screen x="0" y="23" width="1865" height="1057" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591141903838">
+      <screen x="0" y="23" width="1872" height="1057" />
     </state>
     <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1865.1057@0.23.1865.1057" timestamp="1590786301347" />
-    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1590014246775" />
+    <state x="120" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1872.1057@0.23.1872.1057" timestamp="1591141903838" />
     <state x="563" y="266" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1873.1057@0.23.1873.1057" timestamp="1588698340464" />
     <state x="643" y="243" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1874.1057@0.23.1874.1057" timestamp="1589238712126" />
     <state x="659" y="130" key="CommitChangelistDialog2" timestamp="1589234828213">
