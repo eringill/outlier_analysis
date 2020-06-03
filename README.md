@@ -8,6 +8,8 @@ INPUT:
 1. You will be asked to enter the path to a .csv file that you would like to analyze for outliers.
 2. You will be asked to enter an age for which you would like to predict the median and range
 3. The .csv file must contain a column labeled *'age_in_days'* and a column labeled *'values'*
+4. Test data have been provided if you would like to observe the behavior of the program. Simply hit the <enter> key when
+asked for input.
 
 The code will determines outliers for any numerical dataset using the < Q1 - 1.5 * IQR OR > Q3 + 1.5 * IQR method
 and the modified z-score method. Outliers are determined separately for each age.
