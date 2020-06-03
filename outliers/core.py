@@ -145,3 +145,5 @@ plt.plot(x, r.func_log(x, *log10_coeff))
 plt.plot(x, r.func_ln(x, *ln_coeff))
 plt.title("Regression performed on medians of age 1, 3 and 5\ndata with outliers removed")
 plt.show()
+
+exit()
