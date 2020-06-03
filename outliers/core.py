@@ -14,15 +14,12 @@ import warnings
 # prevent plot warnings from printing
 warnings.filterwarnings('ignore')
 
-sys.path.append("/Users/egill/Desktop/CHILDdb/python/")
-
-
 # functions
 def get_filename():
     print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\n\n")
     filename = input()
     if filename == "" or filename == "\n" or filename is None:
-        filename = "/Users/egill/Desktop/CHILDdb/CHILD_all_weights.csv"
+        filename = "data/test_data.csv"
     return filename
 
 
@@ -126,15 +123,18 @@ print("\n\nThe predicted acceptable range at age ", str(age), " is from ", str(m
 # save csv file
 outlierfile = filename.replace('.csv', '_outliers.csv')
 
-# data_output.to_csv(outlierfile, index = False)
+data_output.to_csv(outlierfile, index = False)
 
 # plot overlay of IQR and mod-Z score outliers
-print(p9.ggplot(data=data_output, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
+p = (p9.ggplot(data=data_output, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
     + p9.geom_jitter(mapping=p9.aes(color = 'z_outlier', outlier_alpha = 0.1))
     + p9.geom_boxplot(outlier_size=0, outlier_stroke=0)
     + p9.ggtitle("Outliers detected via the IQR method (boxplot)\nand modified z-score method (dotplot)")
     + p9.ylim(-10, 175)
 )
+print(p)
+plotfile = filename.replace('.csv', '_outlierplot')
+p9.ggsave(plot = p, filename = plotfile)
 
 # plot regression
 x = data_stats_regression['age_rounded']
@@ -146,4 +146,4 @@ plt.plot(x, r.func_ln(x, *ln_coeff))
 plt.title("Regression performed on medians of age 1, 3 and 5\ndata with outliers removed")
 plt.show()
 
-exit()
+
