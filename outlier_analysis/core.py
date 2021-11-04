@@ -5,8 +5,8 @@
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
-import outliers as o
-import regression as r
+import outlier_analysis.outliers as o
+import outlier_analysis.regression as r
 import plotnine as p9
 import warnings
 import copy
