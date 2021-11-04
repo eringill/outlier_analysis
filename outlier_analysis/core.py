@@ -9,6 +9,7 @@ import outliers as o
 import regression as r
 import plotnine as p9
 import warnings
+import copy
 
 # prevent plot warnings from printing
 warnings.filterwarnings('ignore')
