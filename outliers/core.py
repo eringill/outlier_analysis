@@ -24,11 +24,17 @@ def get_filename():
 
 
 def get_age():
-    print("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
-    age = input()
-    if age == "" or age == "\n" or age is None or type(age) != int:
-        age = 4
-    return age
+    print("\n\nWould you like to predict an acceptable range of values for an upcoming time point? (y/n)\n\n")
+    reply = input().lower()
+    if reply == 'y':
+        print("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
+        age = input()
+        if age == "" or age == "\n" or age is None or type(age) != int:
+            age = 4
+        return age
+    else:
+        exit()
+    
 
 
 # get .csv filename from user
@@ -37,10 +43,8 @@ filename = get_filename()
 # open file
 data = pd.read_csv(filename)
 
-# ask user for age to predict range of values
-age = get_age()
-
 # calculate age in years as float, then as rounded number
+print('\n\nCalculating age in years for each sample...\n\n')
 data = o.add_age(data)
 
 # find minimum age in dataset
@@ -51,6 +55,7 @@ data_split = o.split_by_age(data)
 
 # calculate median, lower and upper range of expected values for each age
 # using IQR method. Save this as separate dataframe.
+print('\n\nCalculating medians and ranges of expected values using IQR method...\n\n')
 data_stats = o.calc_stats(data_split, data)
 
 # see if there is a significant difference between ages using Kruskal-Wallis
@@ -61,16 +66,22 @@ difference = o.test_for_difference(data_split)
 stats_merged = o.merge_stats(data_split, data_stats)
 
 # mark IQR outliers on each dataframe in list of observation dataframes
+print('\n\nAnnotating IQR outliers...\n\n')
 data_outliers = o.mark_outliers(stats_merged)
 
 # calculate the modified z-score of each data point
+print('\n\nCalculating modified z-scores...\n\n')
 data_z_scores = o.mod_z_score(data_outliers)
 
 # merge all dataframes in list back together
 data_output = o.df_append(data_z_scores)
 
 # mark modified z-score outliers in merged dataframe
+print('\n\nAnnotating modified z-score outliers...\n\n')
 data_output = o.z_outliers(data_output)
+
+# ask user for age to predict range of values
+age = get_age()
 
 # if Kruskal-Wallace test determines medians are not stat different
 # linear regression will still help here
