@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 
 # functions
 def get_filename():
-    print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\n\n")
+    print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\nFor a demo, hit <Enter>.\n\n")
     filename = input()
     if filename == "" or filename == "\n" or filename is None:
         filename = "data/test_data.csv"
