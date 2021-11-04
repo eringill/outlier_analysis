@@ -28,6 +28,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=['numpy', 'copy', 'matplotlib', 'plotnine', 'warnings', 'scipy', 'statistics', 'pandas', 'sklearn'],
+    install_requires=['numpy', 'matplotlib', 'plotnine', 'warnings', 'scipy', 'statistics', 'pandas', 'sklearn'],
 
 )

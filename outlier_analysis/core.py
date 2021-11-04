@@ -2,7 +2,6 @@
 # author: egill
 
 # imports
-import copy
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
