@@ -2,7 +2,7 @@
 import pathlib
 
 # Third party imports
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).resolve().parent
@@ -12,15 +12,15 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="outliers-egill", 
+    name="outlier_analysis", 
     version="0.0.1",
     author="Erin Gill",
     author_email="erin.gill81@gmail.com",
     description="Methods to automatically parse longitudinal numeric data for outliers using IQR and modified z-score, will also predict future time points using linear regression",
-    long_description=long_description,
+    long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/eringill/outlier_analysis",
-    packages=['outlier_analysis'],
+    packages=find_packages(),
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -30,5 +30,4 @@ setup(
     python_requires='>=3.6',
     install_requires=['numpy', 'copy', 'matplotlib', 'plotnine', 'warnings', 'scipy', 'statistics', 'pandas', 'sklearn'],
 
-    entry_points={'console_scripts': ['eringill=outlier_analysis.__main__:main']}
 )
