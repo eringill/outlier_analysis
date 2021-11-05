@@ -23,7 +23,7 @@ INPUT:
 asked for input.
 
 The code will determines outliers for any numerical dataset using the < Q1 - 1.5 * IQR OR > Q3 + 1.5 * IQR method
-and the modified z-score method. Outliers are determined separately for each age.
+and the modified z-score method (|modified z-score| > 3.5). Outliers are determined separately for each age.
 
 OUTPUT:
 ---------
