@@ -2,6 +2,17 @@ Outlier_analysis:
 ============
 ### Methods to automatically parse longitudinal numeric data for outliers.
 
+INSTALLATION:
+-------------
+1. Download `dist/outlier_analysis-0.0.1-py3-none-any.whl`
+2. Open a terminal window and navigate to the directory where the .whl file was downloaded
+3. Type `pip install outlier_analysis-0.0.1-py3-none-any.whl`
+4. Type `pip show outlier_analysis` to verify installation
+
+EXECUTION:
+----------
+1. Type `python -m outlier_analysis.run` in a terminal window
+
 INPUT:
 -------
 
@@ -12,7 +23,7 @@ INPUT:
 asked for input.
 
 The code will determines outliers for any numerical dataset using the < Q1 - 1.5 * IQR OR > Q3 + 1.5 * IQR method
-and the modified z-score method. Outliers are determined separately for each age.
+and the modified z-score method (|modified z-score| > 3.5). Outliers are determined separately for each age.
 
 OUTPUT:
 ---------

@@ -2,21 +2,21 @@
 # author: egill
 
 # imports
-import copy
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
-import outliers as o
-import regression as r
+import outlier_analysis.outliers as o
+import outlier_analysis.regression as r
 import plotnine as p9
 import warnings
+import copy
 
 # prevent plot warnings from printing
 warnings.filterwarnings('ignore')
 
 # functions
 def get_filename():
-    print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\n\n")
+    print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\nFor a demo, hit <Enter>.\n\n")
     filename = input()
     if filename == "" or filename == "\n" or filename is None:
         filename = "data/test_data.csv"
@@ -24,11 +24,17 @@ def get_filename():
 
 
 def get_age():
-    print("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
-    age = input()
-    if age == "" or age == "\n" or age is None or type(age) != int:
-        age = 4
-    return age
+    print("\n\nWould you like to predict an acceptable range of values for an upcoming time point? (y/n)\n\n")
+    reply = input().lower()
+    if reply == 'y':
+        print("\n\nEnter the age for which you would like to predict an acceptable range of values.\n\n")
+        age = input()
+        if age == "" or age == "\n" or age is None or type(age) != int:
+            age = 4
+        return age
+    else:
+        exit()
+    
 
 
 # get .csv filename from user
@@ -37,10 +43,8 @@ filename = get_filename()
 # open file
 data = pd.read_csv(filename)
 
-# ask user for age to predict range of values
-age = get_age()
-
 # calculate age in years as float, then as rounded number
+print('\n\nCalculating age in years for each sample...\n\n')
 data = o.add_age(data)
 
 # find minimum age in dataset
@@ -51,6 +55,7 @@ data_split = o.split_by_age(data)
 
 # calculate median, lower and upper range of expected values for each age
 # using IQR method. Save this as separate dataframe.
+print('\n\nCalculating medians and ranges of expected values using IQR method...\n\n')
 data_stats = o.calc_stats(data_split, data)
 
 # see if there is a significant difference between ages using Kruskal-Wallis
@@ -61,26 +66,51 @@ difference = o.test_for_difference(data_split)
 stats_merged = o.merge_stats(data_split, data_stats)
 
 # mark IQR outliers on each dataframe in list of observation dataframes
+print('\n\nAnnotating IQR outliers...\n\n')
 data_outliers = o.mark_outliers(stats_merged)
 
 # calculate the modified z-score of each data point
+print('\n\nCalculating modified z-scores...\n\n')
 data_z_scores = o.mod_z_score(data_outliers)
 
 # merge all dataframes in list back together
 data_output = o.df_append(data_z_scores)
 
 # mark modified z-score outliers in merged dataframe
+print('\n\nAnnotating modified z-score outliers...\n\n')
 data_output = o.z_outliers(data_output)
+
+# save csv file
+outlierfile = filename.replace('.csv', '_outliers.csv')
+
+print('\n\nWriting output file...\n\n')
+data_output.to_csv(outlierfile, index = False)
+
+# plot overlay of IQR and mod-Z score outliers
+print('\n\nGenerating plot of outliers...\n\n')
+p = (p9.ggplot(data=data_output, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
+    + p9.geom_jitter(mapping=p9.aes(color = 'z_outlier', outlier_alpha = 0.1))
+    + p9.geom_boxplot(outlier_size=0, outlier_stroke=0)
+    + p9.ggtitle("Outliers detected via the IQR method (boxplot)\nand modified z-score method (dotplot)")
+    + p9.ylim(-10, 175)
+)
+print(p)
+plotfile = filename.replace('.csv', '_outlierplot')
+p9.ggsave(plot = p, filename = plotfile)
+
+
+# ask user for age to predict range of values
+age = get_age()
 
 # if Kruskal-Wallace test determines medians are not stat different
 # linear regression will still help here
 if difference > 0.05:
     print(
         "\n\nData medians are not statistically different. Next time point can be predicted based on the last one "
-        "obtained.\n\n")
+        "obtained...\n\n")
 
 else:
-    print("\n\nData medians are statistically different. Starting linear regression.\n\n")
+    print("\n\nData medians are statistically different. Starting linear regression...\n\n")
 
 # remove modified z-score outliers before performing regression
 no_outliers = o.remove_z_outliers(data_output)
@@ -120,23 +150,9 @@ max_acceptable_range = r.return_prediction(best_line, age, linear_coeff, log10_c
 print("\n\nThe predicted acceptable range at age ", str(age), " is from ", str(min_acceptable_range), " to ",
       str(max_acceptable_range), "\n\n")
 
-# save csv file
-outlierfile = filename.replace('.csv', '_outliers.csv')
-
-data_output.to_csv(outlierfile, index = False)
-
-# plot overlay of IQR and mod-Z score outliers
-p = (p9.ggplot(data=data_output, mapping=p9.aes(x='age_rounded', y='value', group = 'age_rounded'))
-    + p9.geom_jitter(mapping=p9.aes(color = 'z_outlier', outlier_alpha = 0.1))
-    + p9.geom_boxplot(outlier_size=0, outlier_stroke=0)
-    + p9.ggtitle("Outliers detected via the IQR method (boxplot)\nand modified z-score method (dotplot)")
-    + p9.ylim(-10, 175)
-)
-print(p)
-plotfile = filename.replace('.csv', '_outlierplot')
-p9.ggsave(plot = p, filename = plotfile)
 
 # plot regression
+print('\n\nGenerating regression plot...\n\n')
 x = data_stats_regression['age_rounded']
 y = data_stats_regression['median']
 plt.plot(x, y, 'o')
