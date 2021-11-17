@@ -3,6 +3,7 @@
 
 # imports
 import sys
+import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import outlier_analysis.outliers as o
@@ -14,12 +15,18 @@ import copy
 # prevent plot warnings from printing
 warnings.filterwarnings('ignore')
 
+_ROOT = os.path.abspath(os.path.dirname(__file__))
+def get_data(path):
+    return os.path.join(_ROOT, 'data', path)
+
+get_data('test_data.csv')
+
 # functions
 def get_filename():
     print("\n\nEnter the path to a csv file containing data you would like to analyze for outliers.\nFor a demo, hit <Enter>.\n\n")
     filename = input()
     if filename == "" or filename == "\n" or filename is None:
-        filename = "data/test_data.csv"
+        filename = get_data('test_data.csv')
     return filename
 
 
