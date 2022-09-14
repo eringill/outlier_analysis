@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 def conv_xlsx_to_csv():
     print("\n\nEnter the path to the xlsx file you would like to convert to csv (for input into the outlier_analysis program).\n\n")
     filename = input()
@@ -9,7 +11,9 @@ def conv_xlsx_to_csv():
     extension = filename.split('.')[-1]
     if (extension != "xlsx"):
         print("\nNot an xlsx file. Exiting.")
+        exit()
     else:
+        filename = os.path.join(_ROOT, 'data', filename) # Fix FileNotFoundError.
         data = pd.read_excel(filename)
         # For each column that isn't age_in_days, make a new csv file for it and change the column name to 'value'.
         print("\nNew csv files:")
