@@ -27,6 +27,8 @@ def get_filename():
     filename = input()
     if filename == "" or filename == "\n" or filename is None:
         filename = get_data('test_data.csv')
+    else:
+        filename = os.path.join(_ROOT, 'data', filename) # Fix FileNotFoundError.
     return filename
 
 
@@ -42,12 +44,32 @@ def get_age():
     else:
         exit()
     
-
+def conv_xlsx_to_csv():
+    print("Input is an xlsx file. Convert into csv (y/n)?")
+    conv = input()
+    if (conv.lower() != "y"):
+        return
+    data = pd.read_excel(filename)
+    # For each column that isn't age_in_days, make a new csv file for it and change the column name to 'value'.
+    print("\nNew csv files (please rerun the program with the desired individual files):")
+    newFilenames = []
+    for col in data.columns:
+        if (col != 'age_in_days'):
+            newData = (data[['age_in_days', col]]).rename(columns={col:'value'})
+            newFilename = os.path.splitext(filename)[0] + "_" + col + ".csv"
+            newData.to_csv(newFilename, index=False)
+            newFilenames.append(newFilename)
+            print("\t"+newFilename)
+    return newFilenames
 
 # get .csv filename from user
 filename = get_filename()
 
 # open file
+extension = filename.split('.')[-1]
+if (extension == "xlsx"):
+    conv_xlsx_to_csv()
+    exit()
 data = pd.read_csv(filename)
 
 # calculate age in years as float, then as rounded number
